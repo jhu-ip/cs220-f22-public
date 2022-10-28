@@ -24,10 +24,17 @@ int read_num(FILE *fp) {
 
   int val;
   if (fscanf(fp, "%d", &val) == 1) { // try to get an int
-    while(isspace(ch = fgetc(fp))) {
+    char ch = fgetc(fp);
+    while(isspace(ch) && ch != '\n') {
       // drop trailing whitespace
+      ch = fgetc(fp);
     }
-    ungetc(ch, fp);
+    if (ch != '\n') {
+      /*if the last character was not a new line that means we
+	accidentally read something on the line that has pixel information*/
+      ungetc(ch, fp);
+    }
+    //ungetc(ch, fp);
     return val; // we got a value, so return it
   } else {
     fprintf(stderr, "Error:ppm_io - failed to read number from file\n");
