@@ -9,7 +9,7 @@ using std::endl;
 
 class CTreeTest {
 public:
-/* toString() and the destructor are called/tested throughout this file: 
+/* toString() and the destructor are called/tested throughout this file:
  * 1) the toString() function should create and return a
  * string of all the elements in the nodes of the tree, separated by
  * newline characters. The ordering of the nodes must be determined by
@@ -22,7 +22,7 @@ public:
 
 /* Constructor:
  * "A constructor that is passed the character to store in the root
- * node of a new tree. 
+ * node of a new tree.
  */
     static void testConstructor() {
         // build a few trees with constructor
@@ -32,9 +32,9 @@ public:
         assert(t2->toString() == "b\n");
         CTree* t3 = new CTree('^');
         assert(t3->toString() == "^\n");
-	delete t1;
-	delete t2;
-	delete t3;
+	    delete t1;
+	    delete t2;
+	    delete t3;
     }
 
 
@@ -61,8 +61,8 @@ public:
     // b
     assert(t1->addChild('b'));
 
-    
-    
+
+
     assert(t1->toString() == "A\nb\n");
     // can't add again
     assert(!t1->addChild('b'));
@@ -76,8 +76,8 @@ public:
     // can't add again
     assert(!t1->addChild('c'));
     assert(t1->toString() == "A\nb\nc\n");
-    
-    
+
+
     // A
     // |
     // B - b - c
@@ -90,7 +90,7 @@ public:
     assert(!t1->addChild('c'));
     assert(t1->toString() == "A\nB\nb\nc\n");
 
-    
+
     // can't add 'A' as sibling of 'A'
     assert(!t1->addSibling('A'));
     assert(t1->toString() == "A\nB\nb\nc\n");
@@ -98,17 +98,17 @@ public:
     // make sure that we can't add siblings to the root
     assert(!t1->addSibling('C'));
     assert(t1->toString() == "A\nB\nb\nc\n");
-    
-    
 
-    
+
+
+
     // Adding in an already built subTree
     // First build another tree
     // R
     CTree* t2 = new CTree('R');
-    
+
     assert(t2->toString() == "R\n");
-        
+
     // R
     // |
     // C
@@ -191,12 +191,12 @@ public:
     CTree* t1 = new CTree('a');
     assert(t1->addChild('b'));
     assert(t1->addChild('c'));
-    
+
     CTree* t2 = new CTree('d');
     assert(t2->addChild('e'));
     assert(t2->addChild('f'));
     // now test ^ operator to add t2 as a child to t1
-    *t1 = *t1 + *t2;     
+    *t1 = *t1 + *t2;
     assert(t1->toString() == "a\nb\nc\nd\ne\nf\n");
     assert(t2->toString() == "d\ne\nf\n");
     delete t1;
@@ -218,7 +218,7 @@ public:
     delete t1;
   }
 
-  
+
   // adds a single child
   static void testAddSimpleChild() {
     // A
@@ -237,7 +237,7 @@ public:
     delete t2;
   }
   // test == operator. It should return true if two CTrees match each other node
-  // by node. This mean that the two CTrees should have identical structure and 
+  // by node. This mean that the two CTrees should have identical structure and
   // the node values should be the same.
   static void testEqualityOp() {
     CTree* t1 = new CTree('a');
